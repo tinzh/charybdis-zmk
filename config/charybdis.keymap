@@ -9,6 +9,194 @@
 #include "behaviors.dtsi"
 #include "combos.dtsi"
 
+#define MACRO_PLACEHOLDER 0
+
+// variables
+#define HOLD_MS       1000  // time after which hold action is activated
+#define TAP_DANCE_MS  1000  // max time between tap-dance taps
+
+// layers
+#define BS_L  0
+#define NUM_L 1
+#define SYM_L 2
+#define NAV_L 3
+#define GAM_L 4
+
+// redefines
+#define BRIUP C_BRI_UP
+#define BRIDN C_BRI_DN
+#define VOLUP C_VOL_UP
+#define VOLDN C_VOL_DN
+#define VMUTE C_MUTE
+
+/ {
+    behaviors {
+        dummy: dummy {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <1>;
+            bindings = <&none>, <&none>;
+        };
+
+        layer_sticky: layer_sticky {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <HOLD_MS>;
+            bindings = <&sl>, <&mo>;
+        };
+
+        hrm: home_row_mod {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <HOLD_MS>;
+            bindings = <&kp>, <&kp>;
+        };
+
+        lp: layer_key_press {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <HOLD_MS>;
+            bindings = <&mo>, <&kp>;
+        };
+
+        ll: layer_layer_press {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <HOLD_MS>;
+            bindings = <&mo>, <&to>;
+        };
+
+        hth: hold_tap_hold_preferred {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "hold-preferred";
+            tapping-term-ms = <HOLD_MS>;
+            bindings = <&kp>, <&kp>;
+        };
+    };
+
+    macros {
+        lc: lcontrol_hrm {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to2>, <&hrm LCTRL MACRO_PLACEHOLDER>;
+        };
+        la: lalt_hrm {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to2>, <&hrm LALT MACRO_PLACEHOLDER>;
+        };
+        lm: lmeta_hrm {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to2>, <&hrm LMETA MACRO_PLACEHOLDER>;
+        };
+        ls: lshift_hrm {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to2>, <&hrm LSHFT MACRO_PLACEHOLDER>;
+        };
+        rc: rcontrol_hrm {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to2>, <&hrm RCTRL MACRO_PLACEHOLDER>;
+        };
+        ra: ralt_hrm {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to2>, <&hrm RALT MACRO_PLACEHOLDER>;
+        };
+        rm: rmeta_hrm {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to2>, <&hrm RMETA MACRO_PLACEHOLDER>;
+        };
+        rs: rshift_hrm {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to2>, <&hrm RSHFT MACRO_PLACEHOLDER>;
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+        combo_bs_l {
+            timeout-ms = <HOLD_MS>;
+            key-positions = <39 40>;
+            layers = <GAM_L>;
+            bindings = <&to BS_L>;
+        };
+        combo_gam_l {
+            timeout-ms = <HOLD_MS>;
+            key-positions = <37 38>;
+            layers = <BS_L>;
+            bindings = <&to GAM_L>;
+        };
+    };
+
+    keymap {
+        // view with tabstop=18
+
+        compatible = "zmk,keymap";
+
+        base_layer {
+            display-name = "base";
+            bindings = <
+&none	&kp Q	&kp W	&kp F	&kp P	&kp B		&kp J	&kp L	&kp U	&kp Y	&kp SEMI	&none
+&none	&hrm LCTRL A	&hrm LALT R	&hrm LMETA S	&hrm LSHFT T	&kp G		&kp M	&hrm RSHFT N	&hrm RMETA E	&hrm RALT I	&hrm RCTRL O	&none
+&none	&kp Z	&kp X	&kp C	&kp D	&kp V		&kp K	&kp H	&kp COMMA	&kp DOT	&kp FSLH	&none
+			&kp LSHFT 	&lp NUM_L SPACE	&lp NAV_L BSPC		&lp SYM_L RET	&key_repeat	&none
+            >;
+        };
+
+        num_layer {
+            display-name = "num";
+            bindings = <
+&none	&kp F1	&kp F2	&kp F3	&kp F4	&kp F5		&kp F6	&kp F7	&kp F8	&kp F9	&kp F10	&none
+&none	&hrm LCTRL N1	&hrm LALT N2	&hrm LMETA N3	&hrm LSHFT N4	&kp N5		&kp N6	&hrm RSHFT N7	&hrm RMETA N8	&hrm RALT N9	&hrm RCTRL N0	&none
+&none	&kp F11	&kp F12	&kp F13	&kp F14	&kp F15		&kp F16	&kp F17	&kp F18	&kp F19	&kp F20	&none
+			&trans	&trans	&trans		&trans	&trans	&trans
+            >;
+        };
+
+        symbol_layer {
+            display-name = "sym";
+            bindings = <
+&none	&kp SQT	&kp LT 	&kp GT	&kp DQT	&none		&kp DLLR	&kp UNDER	&kp LBKT	&kp RBKT	&kp PRCNT	&none
+&none	&hrm LCTRL EXCL	&hrm LALT MINUS	&hrm LMETA PLUS	&hrm LSHFT EQUAL	&kp POUND		&kp AMPS	&hrm RSHFT COLON	&hrm RMETA LPAR	&hrm RALT RPAR	&hrm RCTRL QMARK	&none
+&none	&kp CARET	&kp FSLH	&kp STAR	&kp BSLH	&kp GRAVE		&kp PIPE	&kp TILDE	&kp LBRC	&kp RBRC	&kp AT	&none
+			&trans	&trans	&lp NAV_L DEL		&trans	&trans	&trans
+            >;
+        };
+
+        nav_layer {
+            display-name = "nav";
+            bindings = <
+&none	&kp BRIDN	&kp BRIUP	&kp VOLDN	&kp VOLUP	&kp VMUTE		&ext_power EP_ON	&ext_power EP_OFF	&kp TAB	&kp CAPS	&kp HOME	&none
+&none	&kp LCTRL	&hth LALT C_PREV	&hth LMETA C_NEXT	&hth LSHFT C_PP	&none		&kp LEFT	&kp DOWN	&kp UP	&kp RIGHT	&kp ESC	&none
+&none	&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&bt BT_SEL 3	&bt BT_CLR		&out OUT_BLE	&out OUT_USB	&kp PG_DN	&kp PG_UP	&kp END	&none
+			&trans	&trans	&trans		&trans	&trans	&trans
+            >;
+        };
+
+        gaming_layer {
+            display-name = "game";
+            bindings = <
+&none	&kp Q	&kp W	&kp F	&kp P	&kp B		&kp J	&kp L	&kp U	&kp Y	&kp SEMI	&none
+&none	&kp A	&kp R	&kp S	&kp T	&kp G		&kp M	&kp N	&kp E	&kp I	&kp O	&none
+&none	&kp Z	&kp X	&kp C	&kp D	&kp V		&kp K	&kp H	&kp COMMA	&kp DOT	&kp FSLH	&none
+			&kp LALT	&kp SPACE	&kp LSHFT 		&lp SYM_L RET	&key_repeat	&to BS_L
+            >;
+        };
+   };
+};
+
+
+
 / {
     /* input config for mouse move mode */
     trackball_listener {
