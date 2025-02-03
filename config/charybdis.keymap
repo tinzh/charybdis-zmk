@@ -36,10 +36,10 @@
         device = <&vtrackball>;
         layers = <BS_L>;
         evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_X>;
-        y-input-code = <INPUT_REL_Y>;
-        scale-multiplier = <4>;
-        scale-divisor = <5>;
+        x-input-code = <INPUT_REL_Y>;
+        y-input-code = <INPUT_REL_X>;
+        scale-multiplier = <7>;
+        scale-divisor = <10>;
         // bindings = <&ib_toggle_layer 7>;
     };
 
@@ -49,10 +49,10 @@
         device = <&vtrackball>;
         layers = <NAV_L>;
         evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_X>;
-        y-input-code = <INPUT_REL_Y>;
-        scale-multiplier = <1>;
-        scale-divisor = <6>;
+        x-input-code = <INPUT_REL_Y>;
+        y-input-code = <INPUT_REL_X>;
+        scale-multiplier = <3>;
+        scale-divisor = <10>;
     };
 
     /* input config for mouse scroll mode */
@@ -61,9 +61,11 @@
         device = <&vtrackball>;
         layers = <NUM_L>;
         evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_MISC>;
-        y-input-code = <INPUT_REL_WHEEL>;
+        x-input-code = <INPUT_REL_WHEEL>;
+        y-input-code = <INPUT_REL_MISC>;
         y-invert;
+        scale-multiplier = <3>;
+        scale-divisor = <5>;
         bindings = <&ib_wheel_scaler 1 14>;
     };
 
