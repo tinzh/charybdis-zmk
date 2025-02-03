@@ -36,8 +36,8 @@
         device = <&vtrackball>;
         layers = <BS_L>;
         evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_Y>;
-        y-input-code = <INPUT_REL_X>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
         scale-multiplier = <7>;
         scale-divisor = <10>;
         // bindings = <&ib_toggle_layer 7>;
@@ -49,8 +49,8 @@
         device = <&vtrackball>;
         layers = <NAV_L>;
         evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_Y>;
-        y-input-code = <INPUT_REL_X>;
+        x-input-code = <INPUT_REL_X>;
+        y-input-code = <INPUT_REL_Y>;
         scale-multiplier = <3>;
         scale-divisor = <10>;
     };
@@ -61,8 +61,8 @@
         device = <&vtrackball>;
         layers = <NUM_L>;
         evt-type = <INPUT_EV_REL>;
-        x-input-code = <INPUT_REL_WHEEL>;
-        y-input-code = <INPUT_REL_MISC>;
+        x-input-code = <INPUT_REL_MISC>;
+        y-input-code = <INPUT_REL_WHEEL>;
         y-invert;
         scale-multiplier = <3>;
         scale-divisor = <5>;
