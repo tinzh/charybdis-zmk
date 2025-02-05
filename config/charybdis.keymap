@@ -167,14 +167,20 @@
             #binding-cells = <1>;
             bindings = <&macro_param_1to2>, <&hrm RSHFT MACRO_PLACEHOLDER>;
         };
+
+        cp: copy {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&macro_press &kp LMETA>, <&macro_tap &kp C>, <&macro_release &kp LMETA>;
+        };
     };
 
     combos {
         compatible = "zmk,combos";
-        combo_gam_to_bs_l {
+        combo_gam_ms_to_bs_l {
             timeout-ms = <HOLD_MS>;
             key-positions = <33 34>;
-            layers = <GAM_L>;
+            layers = <GAM_L MS_L>;
             bindings = <&to BS_L>;
         };
         combo_bs_to_gam_l {
@@ -185,9 +191,15 @@
         };
         combo_bs_to_ms_l {
             timeout-ms = <HOLD_MS>;
-            key-positions = <33 19>;
+            key-positions = <25 29>;
             layers = <BS_L>;
             bindings = <&to MS_L>;
+        };
+        copy {
+            timeout-ms = <HOLD_MS>;
+            key-positions = <12 22>;
+            layers = <BS_L>;
+            bindings = <&cp>;
         };
     };
 
