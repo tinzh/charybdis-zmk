@@ -61,8 +61,6 @@ Here are a few tips for a quick start:
   - When double tapped and held, it will reduce the cursor speed for more precision.
   - When single tapped it outputs the escape key.
 
-![keymap images](keymap-drawer/charybdis.svg)
-
 ## Modify Key Mappings
 
 ### ZMK Studio
