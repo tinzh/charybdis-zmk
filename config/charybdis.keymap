@@ -204,7 +204,7 @@
     };
 
     keymap {
-        // view with tabstop=18
+        // view with :set tabstop=18
 
         compatible = "zmk,keymap";
 
