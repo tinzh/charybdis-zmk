@@ -21,6 +21,8 @@
 #define MS_L  5
 #define SNM_L 6
 #define SCM_L 7
+#define QGM_L 8
+#define QNM_L 8
 
 // redefines
 #define BRIUP C_BRI_UP
@@ -85,14 +87,6 @@
     };
 
     behaviors {
-        lys: layer_switch {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
-            flavor = "balanced";
-            tapping-term-ms = <HOLD_MS>;
-            bindings = <&mo>, <&to>;
-        };
-
         hrm: home_row_mod {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -109,6 +103,15 @@
             bindings = <&mo>, <&kp>;
         };
 
+        klp: key_layer_press {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <HOLD_MS>;
+            bindings = <&kp>, <&to>;
+        };
+
+        // unused?
         ll: layer_layer_press {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -180,20 +183,20 @@
         combo_gam_ms_to_bs_l {
             timeout-ms = <HOLD_MS>;
             key-positions = <33 34>;
-            layers = <GAM_L MS_L>;
+            layers = <GAM_L MS_L QGM_L QNM_L>;
             bindings = <&to BS_L>;
-        };
-        combo_to_sym_l {
-            timeout-ms = <HOLD_MS>;
-            key-positions = <30 33>;
-            layers = <BS_L NUM_L NAV_L>;
-            bindings = <&to SYM_L>;
         };
         combo_bs_to_gam_l {
             timeout-ms = <HOLD_MS>;
-            key-positions = <30 32>;
+            key-positions = <30 31>;
             layers = <BS_L>;
             bindings = <&to GAM_L>;
+        };
+        combo_bs_to_qgm_l {
+            timeout-ms = <HOLD_MS>;
+            key-positions = <30 34>;
+            layers = <BS_L>;
+            bindings = <&to QGM_L>;
         };
         copy {
             timeout-ms = <HOLD_MS>;
@@ -205,26 +208,27 @@
 
     keymap {
         // view with :set tabstop=18
+        // TODO: move to NUM_L to better finger
 
         compatible = "zmk,keymap";
 
         base_layer {
             display-name = "base";
             bindings = <
-&kp Q	&kp W	&kp F	&kp P	&kp B		&kp J	&kp L	&kp U	&kp Y	&kp SEMI
+&kp Q	&kp W	&kp F	&kp P	&kp B		&kp J	&kp L	&kp U	&kp Y	&key_repeat
 &hrm LCTRL A	&hrm LALT R	&hrm LMETA S	&hrm LSHFT T	&kp G		&kp M	&hrm RSHFT N	&hrm RMETA E	&hrm RALT I	&hrm RCTRL O
-&kp Z	&kp X	&kp C	&kp D	&kp V		&kp K	&kp H	&kp COMMA	&kp DOT	&kp FSLH
-		&hrm LSHFT RET 	&key_repeat	&lys NAV_L NAV_L		&lp SYM_L BSPC	&hrm RSHFT SPACE
+&kp Z	&kp X	&kp C	&kp D	&kp V		&kp K	&kp H	&kp COMMA	&kp DOT	&key_repeat
+		&none 	&klp LSHFT NAV_L	&key_repeat		&key_repeat	&lp SYM_L SPACE
             >;
         };
 
         symbol_layer {
             display-name = "sym";
             bindings = <
-&kp SQT	&kp LT 	&kp GT	&kp DQT	&kp DEL		&kp DLLR	&kp UNDER	&kp LBKT	&kp RBKT	&kp PRCNT
-&hrm LCTRL EXCL	&hrm LALT MINUS	&hrm LMETA PLUS	&hrm LSHFT EQUAL	&kp POUND		&kp AMPS	&hrm RSHFT COLON	&hrm RMETA LPAR	&hrm RALT RPAR	&hrm RCTRL QMARK
-&kp CARET	&kp FSLH	&kp STAR	&kp BSLH	&kp GRAVE		&kp PIPE	&kp TILDE	&kp LBRC	&kp RBRC	&kp AT
-		&kp RET	&key_repeat	&lys NAV_L NAV_L		&to NUM_L	&to BS_L
+&kp SQT	&kp LT 	&kp GT	&kp DQT	&kp POUND		&kp DLLR	&kp UNDER	&kp LBKT	&kp RBKT	&kp PRCNT
+&hrm LCTRL EXCL	&hrm LALT MINUS	&hrm LMETA PLUS	&hrm LSFT SEMI	&kp EQUAL		&kp AMPS	&hrm RSHFT COLON	&hrm RMETA LPAR	&hrm RALT RPAR	&hrm RCTRL QMARK
+&kp CARET	&kp BSLH	&kp STAR	&kp FSLH	&kp GRAVE		&kp PIPE	&kp TILDE	&kp LBRC	&kp RBRC	&kp AT
+		&none	&to NAV_L	&key_repeat		&key_repeat	&to BS_L
             >;
         };
 
@@ -234,17 +238,17 @@
 &kp F1	&kp F2	&kp F3	&kp F4	&kp F5		&kp F6	&kp F7	&kp F8	&kp F9	&kp F10
 &hrm LCTRL N1	&hrm LALT N2	&hrm LMETA N3	&hrm LSHFT N4	&kp N5		&kp N6	&hrm RSHFT N7	&hrm RMETA N8	&hrm RALT N9	&hrm RCTRL N0
 &kp F11	&kp F12	&kp F13	&kp F14	&kp F15		&kp F16	&kp F17	&kp F18	&kp F19	&kp F20
-		&kp RET	&key_repeat	&lys NAV_L NAV_L		&to SYM_L	&to BS_L
+		&none	&to NAV_L	&key_repeat		&key_repeat	&to BS_L
             >;
         };
 
         nav_layer {
             display-name = "nav";
             bindings = <
-&kp BRIDN	&kp BRIUP	&kp VOLDN	&kp VOLUP	&kp VMUTE		&ext_power EP_ON	&ext_power EP_OFF	&kp TAB	&kp CAPS	&kp HOME
-&kp LCTRL	&hth LALT C_PREV	&hth LMETA C_NEXT	&hth LSHFT C_PP	&none		&kp LEFT	&kp DOWN	&kp UP	&kp RIGHT	&kp ESC
-&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&bt BT_SEL 3	&bt BT_CLR		&out OUT_BLE	&mkp LCLK	&mkp MCLK	&mkp RCLK	&out OUT_USB
-		&kp RET	&key_repeat	&none 		&to NUM_L	&to BS_L
+&kp BRIDN	&kp BRIUP	&kp VOLDN	&kp VOLUP	&kp VMUTE		&ext_power EP_ON	&ext_power EP_OFF	&kp TAB	&kp CAPS	&kp DEL
+&kp LCTRL	&hth LALT C_PREV	&hth LMETA C_NEXT	&klp LSHFT NUM_L	&kp C_PP		&kp LEFT	&kp DOWN	&kp UP	&kp RIGHT	&kp ESC
+&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&kp BSPC	&bt BT_CLR		&out OUT_BLE	&kp RET	&mkp LCLK	&mkp RCLK	&out OUT_USB
+		&none	&to NAV_L	&key_repeat 		&key_repeat	&to BS_L
             >;
         };
 
@@ -254,7 +258,7 @@
 &kp Q	&kp W	&kp F	&kp P	&kp B		&kp J	&kp L	&kp U	&kp Y	&kp SEMI
 &kp A	&kp R	&kp S	&kp T	&kp G		&kp M	&kp N	&kp E	&kp I	&kp O
 &kp Z	&kp X	&kp C	&kp D	&kp V		&kp K	&kp H	&kp COMMA	&kp DOT	&kp FSLH
-		&kp LALT	&kp SPACE	&kp LSHFT 		&lp SYM_L RET	&key_repeat
+		&kp LALT	&kp SPACE	&kp LSHFT 		&key_repeat	&hrm SYM_L SPACE
             >;
         };
 
@@ -285,6 +289,27 @@
 &trans	&trans	&trans	&trans	&trans		&trans	&trans	&trans	&trans	&trans
 &trans	&trans	&trans	&trans	&trans		&trans	&trans	&trans	&trans	&trans
 		&trans	&trans	&trans 		&trans	&trans
+            >;
+        };
+
+        // for games that have wasd and no keybinds
+        qwerty_gaming_layer {
+            display-name = "q-gam";
+            bindings = <
+&kp TAB	&kp Q	&kp W	&kp E	&kp R		&kp J	&kp L	&kp U	&kp Y	&kp BSPC
+&kp LSHFT	&kp A	&kp S	&kp D	&kp F		&kp M	&kp N	&kp E	&kp I	&kp O
+&kp LCTRL	&kp Z	&kp X	&kp C	&kp D		&kp K	&kp H	&kp COMMA	&kp DOT	&kp RET
+		&kp LALT	&kp SPACE	&mo QNM_L 		&none	&none
+            >;
+        };
+
+        qwerty_num_layer {
+            display-name = "q-num";
+            bindings = <
+&kp N6	&kp N7	&kp N8	&kp N9	&kp N0		&kp J	&kp L	&kp U	&kp Y	&kp BSPC
+&kp N1	&kp N2	&kp N3	&kp N4	&kp N5		&kp M	&kp N	&kp E	&kp I	&kp O
+&kp F1	&kp F2	&kp F3	&kp F4	&kp F5		&kp K	&kp H	&kp COMMA	&kp DOT	&kp RET
+		&kp LALT	&kp SPACE	&none 		&none	&none
             >;
         };
    };
