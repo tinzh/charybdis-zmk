@@ -127,54 +127,26 @@
             tapping-term-ms = <HOLD_MS>;
             bindings = <&kp>, <&kp>;
         };
+
+        tsb: to_sym_bs {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            tapping-term-ms = <HOLD_MS>;
+            bindings = <&to_sym_bs>, <&to>;
+        };
     };
 
     macros {
-        lc: lcontrol_hrm {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&macro_param_1to2>, <&hrm LCTRL MACRO_PLACEHOLDER>;
-        };
-        la: lalt_hrm {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&macro_param_1to2>, <&hrm LALT MACRO_PLACEHOLDER>;
-        };
-        lm: lmeta_hrm {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&macro_param_1to2>, <&hrm LMETA MACRO_PLACEHOLDER>;
-        };
-        ls: lshift_hrm {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&macro_param_1to2>, <&hrm LSHFT MACRO_PLACEHOLDER>;
-        };
-        rc: rcontrol_hrm {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&macro_param_1to2>, <&hrm RCTRL MACRO_PLACEHOLDER>;
-        };
-        ra: ralt_hrm {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&macro_param_1to2>, <&hrm RALT MACRO_PLACEHOLDER>;
-        };
-        rm: rmeta_hrm {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&macro_param_1to2>, <&hrm RMETA MACRO_PLACEHOLDER>;
-        };
-        rs: rshift_hrm {
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings = <&macro_param_1to2>, <&hrm RSHFT MACRO_PLACEHOLDER>;
-        };
-
         cp: copy {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings = <&macro_press &kp LMETA>, <&macro_tap &kp C>, <&macro_release &kp LMETA>;
+        };
+        to_sym_bs: to_sym_bs_macro {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_tap &to BS_L>, <&macro_tap &mo SYM_L>, <&macro_pause_for_release>, <&macro_release &mo SYM_L>;
         };
     };
 
@@ -228,7 +200,7 @@
 &kp SQT	&kp LT 	&kp GT	&kp DQT	&kp POUND		&kp DLLR	&kp UNDER	&kp LBKT	&kp RBKT	&kp PRCNT
 &hrm LCTRL EXCL	&hrm LALT MINUS	&hrm LMETA PLUS	&hrm LSFT SEMI	&kp EQUAL		&kp AMPS	&hrm RSHFT COLON	&hrm RMETA LPAR	&hrm RALT RPAR	&hrm RCTRL QMARK
 &kp CARET	&kp BSLH	&kp STAR	&kp FSLH	&kp GRAVE		&kp PIPE	&kp TILDE	&kp LBRC	&kp RBRC	&kp AT
-		&none	&to NAV_L	&key_repeat		&key_repeat	&to BS_L
+		&none	&to NAV_L	&key_repeat		&key_repeat	&tsb 0 BS_L
             >;
         };
 
@@ -238,7 +210,7 @@
 &kp F1	&kp F2	&kp F3	&kp F4	&kp F5		&kp F6	&kp F7	&kp F8	&kp F9	&kp F10
 &hrm LCTRL N1	&hrm LALT N2	&hrm LMETA N3	&hrm LSHFT N4	&kp N5		&kp N6	&hrm RSHFT N7	&hrm RMETA N8	&hrm RALT N9	&hrm RCTRL N0
 &kp F11	&kp F12	&kp F13	&kp F14	&kp F15		&kp F16	&kp F17	&kp F18	&kp F19	&kp F20
-		&none	&to NAV_L	&key_repeat		&key_repeat	&to BS_L
+		&none	&to NAV_L	&key_repeat		&key_repeat	&tsb 0 BS_L
             >;
         };
 
@@ -248,7 +220,7 @@
 &kp BRIDN	&kp BRIUP	&kp VOLDN	&kp VOLUP	&kp VMUTE		&ext_power EP_ON	&ext_power EP_OFF	&kp TAB	&kp CAPS	&kp DEL
 &kp LCTRL	&hth LALT C_PREV	&hth LMETA C_NEXT	&klp LSHFT NUM_L	&kp C_PP		&kp LEFT	&kp DOWN	&kp UP	&kp RIGHT	&kp ESC
 &bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&kp BSPC	&bt BT_CLR		&out OUT_BLE	&kp RET	&mkp LCLK	&mkp RCLK	&out OUT_USB
-		&none	&to NAV_L	&key_repeat 		&key_repeat	&to BS_L
+		&none	&to NAV_L	&key_repeat 		&key_repeat	&tsb 0 BS_L
             >;
         };
 
