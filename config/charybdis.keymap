@@ -217,9 +217,9 @@
         nav_layer {
             display-name = "nav";
             bindings = <
-&kp BRIDN	&kp BRIUP	&kp VOLDN	&kp VOLUP	&kp VMUTE		&ext_power EP_ON	&ext_power EP_OFF	&kp TAB	&kp CAPS	&kp DEL
+&kp BRIDN	&kp BRIUP	&kp VOLDN	&kp VOLUP	&kp VMUTE		&out OUT_USB	&kp DEL	&kp TAB	&kp CAPS	&key_repeat
 &kp LCTRL	&hth LALT C_PREV	&hth LMETA C_NEXT	&klp LSHFT NUM_L	&kp C_PP		&kp LEFT	&kp DOWN	&kp UP	&kp RIGHT	&kp ESC
-&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&kp BSPC	&bt BT_CLR		&out OUT_BLE	&kp RET	&mkp LCLK	&mkp RCLK	&out OUT_USB
+&bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&kp BSPC	&bt BT_CLR		&out OUT_BLE	&kp RET	&mkp LCLK	&mkp RCLK	&key_repeat
 		&none	&to NAV_L	&key_repeat 		&key_repeat	&tsb 0 BS_L
             >;
         };
