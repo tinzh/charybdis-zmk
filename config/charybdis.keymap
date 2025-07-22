@@ -180,7 +180,6 @@
 
     keymap {
         // view with :set tabstop=18
-        // TODO: move to NUM_L to better finger
 
         compatible = "zmk,keymap";
 
@@ -190,7 +189,7 @@
 &kp Q	&kp W	&kp F	&kp P	&kp B		&kp J	&kp L	&kp U	&kp Y	&key_repeat
 &hrm LCTRL A	&hrm LALT R	&hrm LMETA S	&hrm LSHFT T	&kp G		&kp M	&hrm RSHFT N	&hrm RMETA E	&hrm RALT I	&hrm RCTRL O
 &kp Z	&kp X	&kp C	&kp D	&kp V		&kp K	&kp H	&kp COMMA	&kp DOT	&key_repeat
-		&none 	&klp LSHFT NAV_L	&key_repeat		&key_repeat	&lp SYM_L SPACE
+		&none 	&key_repeat	&klp LSHFT NAV_L		&klp LSHFT NAV_L	&lp SYM_L SPACE
             >;
         };
 
@@ -200,7 +199,7 @@
 &kp SQT	&kp LT 	&kp GT	&kp DQT	&kp POUND		&kp DLLR	&kp UNDER	&kp LBKT	&kp RBKT	&kp PRCNT
 &hrm LCTRL EXCL	&hrm LALT MINUS	&hrm LMETA PLUS	&hrm LSFT SEMI	&kp EQUAL		&kp AMPS	&hrm RSHFT COLON	&hrm RMETA LPAR	&hrm RALT RPAR	&hrm RCTRL QMARK
 &kp CARET	&kp BSLH	&kp STAR	&kp FSLH	&kp GRAVE		&kp PIPE	&kp TILDE	&kp LBRC	&kp RBRC	&kp AT
-		&none	&to NAV_L	&key_repeat		&key_repeat	&tsb 0 BS_L
+		&none	&key_repeat	&to NAV_L		&to NAV_L	&tsb 0 BS_L
             >;
         };
 
@@ -210,7 +209,7 @@
 &kp F1	&kp F2	&kp F3	&kp F4	&kp F5		&kp F6	&kp F7	&kp F8	&kp F9	&kp F10
 &hrm LCTRL N1	&hrm LALT N2	&hrm LMETA N3	&hrm LSHFT N4	&kp N5		&kp N6	&hrm RSHFT N7	&hrm RMETA N8	&hrm RALT N9	&hrm RCTRL N0
 &kp F11	&kp F12	&kp F13	&kp F14	&kp F15		&kp F16	&kp F17	&kp F18	&kp F19	&kp F20
-		&none	&to NAV_L	&key_repeat		&key_repeat	&tsb 0 BS_L
+		&none	&key_repeat	&to NAV_L		&to NAV_L	&tsb 0 BS_L
             >;
         };
 
@@ -220,7 +219,7 @@
 &kp BRIDN	&kp BRIUP	&kp VOLDN	&kp VOLUP	&kp VMUTE		&out OUT_USB	&kp DEL	&kp TAB	&kp CAPS	&key_repeat
 &kp LCTRL	&hth LALT C_PREV	&hth LMETA C_NEXT	&klp LSHFT NUM_L	&kp C_PP		&kp LEFT	&kp DOWN	&kp UP	&kp RIGHT	&kp ESC
 &bt BT_SEL 0	&bt BT_SEL 1	&bt BT_SEL 2	&kp BSPC	&bt BT_CLR		&out OUT_BLE	&kp RET	&mkp LCLK	&mkp RCLK	&key_repeat
-		&none	&to NAV_L	&key_repeat 		&key_repeat	&tsb 0 BS_L
+		&none	&key_repeat	&to NAV_L		&to NAV_L	&tsb 0 BS_L
             >;
         };
 
