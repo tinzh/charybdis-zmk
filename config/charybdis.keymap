@@ -193,7 +193,7 @@
         base_layer {
             display-name = "base";
             bindings = <
-&kp Q	&kp W	&kp F	&kp P	&kp B		&kp J	&kp L	&kp U	&kp Y	&key_repeat
+&kp Q	&kp W	&kp F	&kp P	&kp B		&kp J	&kp L	&kp U	&kp Y	&kp ESC
 &hrm LCTRL A	&hrm LALT R	&hrm LMETA S	&hrm LSHFT T	&kp G		&kp M	&hrm RSHFT N	&hrm RMETA E	&hrm RALT I	&hrm RCTRL O
 &kp Z	&kp X	&kp C	&kp D	&kp V		&kp K	&kp H	&kp COMMA	&kp DOT	&key_repeat
 		&none 	&klp LSHFT NAV_L	&key_repeat		&key_repeat	&lp SYM_L SPACE
