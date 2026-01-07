@@ -19,24 +19,24 @@
 ---
 include:
   # QWERTY BT
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: charybdis_left
     keymap: qwerty
     format: bt
     artifact-name: charybdis_left
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: charybdis_right
     keymap: qwerty
     format: bt
     artifact-name: charybdis_right
     snippet: studio-rpc-usb-uart
 
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: charybdis_left
     keymap: qwerty
     format: bt-hs
     artifact-name: charybdis_left_v2
-  - board: nice_nano_v2
+  - board: nice_nano@2.0.0
     shield: charybdis_right
     keymap: qwerty
     format: bt-hs
