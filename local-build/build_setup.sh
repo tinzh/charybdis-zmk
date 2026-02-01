@@ -210,14 +210,7 @@ for shield in "${shields[@]}"; do
       fi
 
       # Create keymap-specific directory and use target as the filename
-      FIRMWARES_FORMAT_DIR="/workspaces/zmk/firmwares/${shield}"
-      FIRMWARES_DIR="${FIRMWARES_FORMAT_DIR}/${keymap}"
-
-      # If format directory doesn't exist, create and chmod it
-      if [ ! -d "$FIRMWARES_FORMAT_DIR" ]; then
-        mkdir -p "$FIRMWARES_FORMAT_DIR"
-        chmod 777 "$FIRMWARES_FORMAT_DIR"
-      fi
+      FIRMWARES_DIR="/workspaces/zmk/firmwares/"
 
       # If keymap directory doesn't exist, create and chmod it
       if [ ! -d "$FIRMWARES_DIR" ]; then
